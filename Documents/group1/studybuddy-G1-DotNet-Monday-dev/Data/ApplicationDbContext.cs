@@ -51,7 +51,7 @@ namespace StudyBuddy.Data
                 .WithOne(r => r.Quiz)
                 .HasForeignKey(r => r.QuizID)
                 .OnDelete(DeleteBehavior.Cascade);
-
+            builder.Entity<Course>();
             builder.Entity<User>()
                 .HasMany(u => u.Certificates)
                 .WithOne(c => c.User)
