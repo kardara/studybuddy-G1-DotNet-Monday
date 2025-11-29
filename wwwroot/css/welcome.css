@@ -8,9 +8,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%) !important;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 0;
     position: relative;
     overflow-x: hidden;
@@ -58,10 +55,6 @@
     z-index: 1;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
 }
 
 .welcome-card {
@@ -71,12 +64,10 @@
     box-shadow: none;
     text-align: center;
     animation: slideUp 0.8s ease-out;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     width: 100vw;
     margin: 0;
+    /* Remove min-height: 100vh and use auto instead */
+    min-height: auto;
 }
 
 @keyframes slideUp {
@@ -256,6 +247,7 @@
     font-weight: 600;
 }
 
+/* Remove the align-items and justify-content from welcome-container */
 /* Ensure full width on all screen sizes */
 @media (max-width: 1200px) {
     .welcome-card {
@@ -337,4 +329,11 @@
         flex-direction: column;
         align-items: center;
     }
+}
+
+/* Add this for the anchor tag styling */
+.feature-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }

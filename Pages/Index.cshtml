@@ -2,7 +2,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    Layout = null; 
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -21,11 +21,13 @@
             <p class="subtitle">Your ultimate platform for mastering knowledge, tracking progress, and achieving academic excellence!</p>
 
             <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-title">Interactive Quizzes</div>
-                    <div class="feature-desc">Test your knowledge with engaging quizzes</div>
-                </div>
+                <a href="/Student/QuizPage" class="feature-card-link">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Interactive Quizzes</div>
+                        <div class="feature-desc">Test your knowledge with engaging quizzes</div>
+                    </div>
+                </a>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <div class="feature-title">Track Progress</div>
