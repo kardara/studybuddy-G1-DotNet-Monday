@@ -1,0 +1,118 @@
+﻿@page "/QuizManagement"
+@page "/Student/QuizManagement"
+
+<h3>Quiz Management</h3>
+
+<link rel="stylesheet" href="css/QuizLayout.css" />
+
+<div class="container">
+    <div class="header">
+        <h1>📚 Quiz Management</h1>
+        <button class="btn btn-primary" @onclick="OpenModal">+ Create New Quiz</button>
+    </div>
+
+    @if (quizzes.Any())
+    {
+        <div class="quiz-grid">
+            @foreach (var quiz in quizzes)
+            {
+                <div class="quiz-card">
+                    <h3>@quiz.Title</h3>
+                    <p>@quiz.Description</p>
+                    <span class="status">@quiz.Status</span>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+            <h2>No Quizzes Yet</h2>
+            <p>Create your first quiz to get started!</p>
+            <button class="btn btn-primary" @onclick="OpenModal">+ Create Quiz</button>
+        </div>
+    }
+</div>
+
+@if (showModal)
+{
+    <div class="modal show" style="display:block;">
+        <div class="modal-content">
+            <h2>Create New Quiz</h2>
+            <EditForm Model="@newQuiz" OnValidSubmit="SaveQuiz">
+                <div class="form-group">
+                    <label for="quizName">Quiz Title</label>
+                    <InputText id="quizName" @bind-Value="newQuiz.Title" placeholder="Enter quiz title" />
+                </div>
+
+                <div class="form-group">
+                    <label for="quizDescription">Description</label>
+                    <InputTextArea id="quizDescription" @bind-Value="newQuiz.Description" placeholder="Enter quiz description" />
+                </div>
+
+                <div class="form-group">
+                    <label for="quizQuestions">Number of Questions</label>
+                    <InputNumber id="quizQuestions" @bind-Value="newQuiz.NumberOfQuestions" />
+                </div>
+
+                <div class="form-group">
+                    <label for="quizDuration">Duration (minutes)</label>
+                    <InputNumber id="quizDuration" @bind-Value="newQuiz.Duration" />
+                </div>
+
+                <div class="form-group">
+                    <label for="quizStatus">Status</label>
+                    <InputSelect id="quizStatus" @bind-Value="newQuiz.Status">
+                        <option value="active">Active</option>
+                        <option value="draft">Draft</option>
+                    </InputSelect>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save Quiz</button>
+                    <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    private bool showModal = false;
+    private List<Quiz> quizzes = new();
+    private Quiz newQuiz = new();
+
+    private void OpenModal()
+    {
+        newQuiz = new Quiz();
+        showModal = true;
+    }
+
+    private void CloseModal()
+    {
+        showModal = false;
+    }
+
+    private void SaveQuiz()
+    {
+        quizzes.Add(new Quiz 
+        { 
+            Title = newQuiz.Title,
+            Description = newQuiz.Description,
+            NumberOfQuestions = newQuiz.NumberOfQuestions,
+            Duration = newQuiz.Duration,
+            Status = newQuiz.Status
+        });
+        showModal = false;
+        StateHasChanged();
+    }
+
+    class Quiz
+    {
+        public string Title { get; set; } = "";
+        public string Description { get; set; } = "";
+        public int NumberOfQuestions { get; set; } = 10;
+        public int Duration { get; set; } = 30;
+        public string Status { get; set; } = "active";
+    }
+}
