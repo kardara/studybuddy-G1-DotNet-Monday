@@ -39,40 +39,40 @@
     <div class="modal show" style="display:block;">
         <div class="modal-content">
             <h2>Create New Quiz</h2>
-            <EditForm Model="@newQuiz" OnValidSubmit="SaveQuiz">
+            <form>
                 <div class="form-group">
                     <label for="quizName">Quiz Title</label>
-                    <InputText id="quizName" @bind-Value="newQuiz.Title" placeholder="Enter quiz title" />
+                    <input type="text" id="quizName" @bind="newQuiz.Title" @bind:event="oninput" placeholder="Enter quiz title" class="form-control" />
                 </div>
 
                 <div class="form-group">
                     <label for="quizDescription">Description</label>
-                    <InputTextArea id="quizDescription" @bind-Value="newQuiz.Description" placeholder="Enter quiz description" />
+                    <textarea id="quizDescription" @bind="newQuiz.Description" @bind:event="oninput" placeholder="Enter quiz description" class="form-control"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="quizQuestions">Number of Questions</label>
-                    <InputNumber id="quizQuestions" @bind-Value="newQuiz.NumberOfQuestions" />
+                    <input type="number" id="quizQuestions" @bind="newQuiz.NumberOfQuestions" @bind:event="oninput" class="form-control" />
                 </div>
 
                 <div class="form-group">
                     <label for="quizDuration">Duration (minutes)</label>
-                    <InputNumber id="quizDuration" @bind-Value="newQuiz.Duration" />
+                    <input type="number" id="quizDuration" @bind="newQuiz.Duration" @bind:event="oninput" class="form-control" />
                 </div>
 
                 <div class="form-group">
                     <label for="quizStatus">Status</label>
-                    <InputSelect id="quizStatus" @bind-Value="newQuiz.Status">
+                    <select id="quizStatus" @bind="newQuiz.Status" class="form-control">
                         <option value="active">Active</option>
                         <option value="draft">Draft</option>
-                    </InputSelect>
+                    </select>
                 </div>
 
                 <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">Save Quiz</button>
+                    <button type="button" class="btn btn-primary" @onclick="SaveQuiz">Save Quiz</button>
                     <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
                 </div>
-            </EditForm>
+            </form>
         </div>
     </div>
 }
@@ -95,8 +95,14 @@
 
     private void SaveQuiz()
     {
-        quizzes.Add(new Quiz 
-        { 
+        if (string.IsNullOrWhiteSpace(newQuiz.Title))
+        {
+            // Simple validation
+            return;
+        }
+
+        quizzes.Add(new Quiz
+        {
             Title = newQuiz.Title,
             Description = newQuiz.Description,
             NumberOfQuestions = newQuiz.NumberOfQuestions,
@@ -107,10 +113,10 @@
         StateHasChanged();
     }
 
-    class Quiz
+    public class Quiz
     {
-        public string Title { get; set; } = "";
-        public string Description { get; set; } = "";
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public int NumberOfQuestions { get; set; } = 10;
         public int Duration { get; set; } = 30;
         public string Status { get; set; } = "active";

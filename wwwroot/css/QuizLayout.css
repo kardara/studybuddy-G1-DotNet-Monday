@@ -1,263 +1,120 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.header {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-h1 {
-    color: #667eea;
-    font-size: 2em;
-}
-
-.btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    }
-
-.btn-edit {
-    background: #4CAF50;
-    color: white;
-    padding: 8px 16px;
-    font-size: 14px;
-}
-
-.btn-delete {
-    background: #f44336;
-    color: white;
-    padding: 8px 16px;
-    font-size: 14px;
-}
-
-.btn-edit:hover {
-    background: #45a049;
-}
-
-.btn-delete:hover {
-    background: #da190b;
-}
-
-.quiz-grid {
+﻿.quiz-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    gap: 1rem;
+    margin-top: 2rem;
 }
 
 .quiz-card {
     background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-    .quiz-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    .quiz-card h3 {
+        margin-top: 0;
+        color: #333;
     }
 
-    .quiz-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    }
-
-.quiz-title {
-    font-size: 1.4em;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.quiz-meta {
-    display: flex;
-    gap: 15px;
-    margin: 15px 0;
-    flex-wrap: wrap;
-}
-
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #666;
-    font-size: 14px;
-}
-
-.meta-icon {
-    width: 18px;
-    height: 18px;
-    fill: #667eea;
-}
-
-.quiz-description {
-    color: #777;
-    margin: 15px 0;
-    line-height: 1.5;
-}
-
-.quiz-status {
+.status {
     display: inline-block;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 15px;
+    padding: 0.25rem 0.5rem;
+    background: #e9ecef;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
 }
 
-.status-active {
-    background: #e8f5e9;
-    color: #2e7d32;
-}
+    .status.active {
+        background: #d4edda;
+        color: #155724;
+    }
 
-.status-draft {
-    background: #fff3e0;
-    color: #ef6c00;
-}
+    .status.draft {
+        background: #fff3cd;
+        color: #856404;
+    }
 
-.quiz-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+    display: none;
 }
 
 .modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    display: none;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
 }
-
-    .modal.active {
-        display: flex;
-    }
 
 .modal-content {
     background: white;
-    padding: 40px;
-    border-radius: 15px;
-    max-width: 500px;
+    padding: 2rem;
+    border-radius: 8px;
     width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-.modal h2 {
-    color: #667eea;
-    margin-bottom: 25px;
+    max-width: 500px;
+    margin: 2rem auto;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 }
 
     .form-group label {
         display: block;
-        margin-bottom: 8px;
-        color: #333;
-        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
         width: 100%;
-        padding: 12px;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        font-size: 15px;
-        transition: border 0.3s ease;
-    }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-    .form-group textarea {
-        resize: vertical;
-        min-height: 100px;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
     }
 
 .modal-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 25px;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
 }
 
 .btn-secondary {
-    background: #e0e0e0;
-    color: #333;
+    background: #6c757d;
+    color: white;
 }
 
-    .btn-secondary:hover {
-        background: #d0d0d0;
-    }
-
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
-
-    .empty-state h2 {
-        color: #667eea;
-        margin-bottom: 15px;
-    }
-
-    .empty-state p {
-        color: #777;
-        margin-bottom: 25px;
-    }

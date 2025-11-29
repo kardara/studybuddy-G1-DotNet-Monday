@@ -4,7 +4,67 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Welcome to our Studybuddy Plateform</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - StudyBuddy</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/welcome.css" asp-append-version="true" />
+</head>
+<body class="welcome-body">
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <div class="logo">📚</div>
+            <h1 class="welcome-title">Welcome to StudyBuddy</h1>
+            <p class="subtitle">Your ultimate platform for mastering knowledge, tracking progress, and achieving academic excellence!</p>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Interactive Quizzes</div>
+                    <div class="feature-desc">Test your knowledge with engaging quizzes</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Track Progress</div>
+                    <div class="feature-desc">Monitor your learning journey in real-time</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-title">Earn Rewards</div>
+                    <div class="feature-desc">Unlock achievements as you learn</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Study Together</div>
+                    <div class="feature-desc">Collaborate with fellow students</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="startLearning()">Start Learning</button>
+                <button class="btn btn-secondary" onclick="exploreCourses()">Explore Courses</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Courses Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/welcome.js"></script>
+</body>
+</html>
