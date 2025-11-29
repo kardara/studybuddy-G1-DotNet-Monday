@@ -15,11 +15,11 @@ body {
     min-height: 100vh;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
     width: 260px;
-    background: white;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    background: #1a1a1a;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -32,15 +32,16 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #333;
 }
 
 .logo-icon {
     font-size: 2em;
+    color: #667eea;
 }
 
 .logo h2 {
-    color: #667eea;
+    color: white;
     font-size: 1.5em;
     font-weight: 700;
 }
@@ -55,19 +56,19 @@ body {
     align-items: center;
     gap: 15px;
     padding: 15px 25px;
-    color: #718096;
+    color: #b0b0b0;
     text-decoration: none;
     transition: all 0.3s ease;
     font-weight: 500;
 }
 
     .nav-item:hover {
-        background: #f7fafc;
+        background: #2d2d2d;
         color: #667eea;
     }
 
     .nav-item.active {
-        background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+        background: linear-gradient(90deg, rgba(102, 126, 234, 0.2) 0%, transparent 100%);
         color: #667eea;
         border-left: 4px solid #667eea;
     }
@@ -78,10 +79,57 @@ body {
 
 .sidebar-footer {
     padding: 20px 0;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #333;
 }
 
-/* Main Content Styles */
+
+.admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin: 0 20px 15px 20px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: calc(100% - 40px);
+}
+
+    .admin-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        background: linear-gradient(135deg, #ff8e8e 0%, #ff6b35 100%);
+    }
+
+    .admin-btn .nav-icon {
+        font-size: 1.1em;
+    }
+
+
+.sidebar-footer .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 30px;
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+}
+
+    .sidebar-footer .nav-item:hover {
+        background-color: #2d2d2d;
+        color: #667eea;
+    }
+
+
 .main-content {
     flex: 1;
     margin-left: 260px;
@@ -89,7 +137,7 @@ body {
     background: #f8f9fa;
 }
 
-/* Top Bar */
+
 .top-bar {
     background: white;
     padding: 25px 30px;
@@ -126,6 +174,7 @@ body {
     position: relative;
     font-size: 1.5em;
     cursor: pointer;
+    color: #4a5568;
 }
 
 .notification-badge {
@@ -154,7 +203,7 @@ body {
     cursor: pointer;
 }
 
-/* Stats Section */
+
 .stats-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -201,7 +250,7 @@ body {
     font-size: 0.9em;
 }
 
-/* Content Grid */
+
 .content-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -209,7 +258,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* Section Headers */
+
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -234,7 +283,7 @@ body {
         color: #764ba2;
     }
 
-/* Courses Section */
+
 .courses-section {
     background: white;
     padding: 30px;
@@ -303,7 +352,7 @@ body {
     color: #718096;
 }
 
-/* Activity Section */
+
 .activity-section {
     background: white;
     padding: 30px;
@@ -347,7 +396,7 @@ body {
     color: #a0aec0;
 }
 
-/* Quiz Section */
+
 .quiz-section {
     background: white;
     padding: 30px;
@@ -444,7 +493,7 @@ body {
         transform: translateY(-2px);
     }
 
-/* Responsive Design */
+
 @media (max-width: 1200px) {
     .content-grid {
         grid-template-columns: 1fr;

@@ -22,29 +22,25 @@
                 <h2>Admin Panel</h2>
             </div>
             <nav class="nav-menu">
-                <a href="#" class="nav-item active">
+                <a href="#" class="nav-item active" onclick="showSection('dashboard')">
                     <span class="nav-icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" onclick="showSection('students')">
                     <span class="nav-icon">👥</span>
                     <span>Students</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" onclick="showSection('courses')">
                     <span class="nav-icon">📚</span>
                     <span>Courses</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" onclick="showSection('quizzes')">
                     <span class="nav-icon">🎯</span>
                     <span>Quizzes</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" onclick="showSection('reports')">
                     <span class="nav-icon">📈</span>
                     <span>Reports</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">⚙️</span>
-                    <span>Settings</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -60,10 +56,10 @@
             <!-- Top Bar -->
             <header class="top-bar">
                 <div class="welcome-section">
-                    <h1>Admin Dashboard</h1>
-                    <p class="date-text">Manage your StudyBuddy platform</p>
+                    <h1 id="sectionTitle">Admin Dashboard</h1>
+                    <p class="date-text" id="sectionDescription">Manage your StudyBuddy platform</p>
                 </div>
-                <div class="action-buttons">
+                <div class="action-buttons" id="actionButtons">
                     <button class="btn btn-primary" onclick="openAddCourseModal()">
                         <span>➕</span> Add Course
                     </button>
@@ -73,141 +69,144 @@
                 </div>
             </header>
 
-            <!-- Stats Cards -->
-            <section class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        👥
+            <!-- Dashboard Section -->
+            <section id="dashboardSection" class="content-section active">
+                <!-- Stats Cards -->
+                <section class="stats-section">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            👥
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="totalStudents">0</h3>
+                            <p class="stat-label">Total Students</p>
+                            <span class="stat-change positive">↑ 12% this month</span>
+                        </div>
                     </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" id="totalStudents">0</h3>
-                        <p class="stat-label">Total Students</p>
-                        <span class="stat-change positive">↑ 12% this month</span>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            📚
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="totalCourses">0</h3>
+                            <p class="stat-label">Total Courses</p>
+                            <span class="stat-change positive">↑ 5% this month</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        📚
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            🎯
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="totalQuizzes">0</h3>
+                            <p class="stat-label">Total Quizzes</p>
+                            <span class="stat-change positive">↑ 8% this month</span>
+                        </div>
                     </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" id="totalCourses">0</h3>
-                        <p class="stat-label">Total Courses</p>
-                        <span class="stat-change positive">↑ 5% this month</span>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            ✅
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="quizzesTaken">0</h3>
+                            <p class="stat-label">Quizzes Taken</p>
+                            <span class="stat-change positive">↑ 15% this month</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        🎯
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" id="totalQuizzes">0</h3>
-                        <p class="stat-label">Total Quizzes</p>
-                        <span class="stat-change positive">↑ 8% this month</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                        ✅
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" id="quizzesTaken">0</h3>
-                        <p class="stat-label">Quizzes Taken</p>
-                        <span class="stat-change positive">↑ 15% this month</span>
-                    </div>
+                </section>
+
+                <!-- Main Grid -->
+                <div class="content-grid">
+                    <!-- Students Table -->
+                    <section class="data-section">
+                        <div class="section-header">
+                            <h2>👥 Students Overview</h2>
+                            <div class="header-actions">
+                                <input type="text" id="studentSearch" placeholder="Search students..." class="search-input">
+                                <button class="btn-icon" onclick="refreshStudents()">🔄</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student Name</th>
+                                        <th>Email</th>
+                                        <th>Courses Enrolled</th>
+                                        <th>Quizzes Taken</th>
+                                        <th>Avg Score</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentsTableBody">
+                                    <!-- Students will be dynamically loaded -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Courses Table -->
+                    <section class="data-section">
+                        <div class="section-header">
+                            <h2>📚 Courses Management</h2>
+                            <div class="header-actions">
+                                <input type="text" id="courseSearch" placeholder="Search courses..." class="search-input">
+                                <button class="btn-icon" onclick="refreshCourses()">🔄</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Course Name</th>
+                                        <th>Category</th>
+                                        <th>Students Enrolled</th>
+                                        <th>Duration</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="coursesTableBody">
+                                    <!-- Courses will be dynamically loaded -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Quizzes Table -->
+                    <section class="data-section">
+                        <div class="section-header">
+                            <h2>🎯 Quizzes Management</h2>
+                            <div class="header-actions">
+                                <input type="text" id="quizSearch" placeholder="Search quizzes..." class="search-input">
+                                <button class="btn-icon" onclick="refreshQuizzes()">🔄</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Quiz Name</th>
+                                        <th>Course</th>
+                                        <th>Questions</th>
+                                        <th>Times Taken</th>
+                                        <th>Avg Score</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="quizzesTableBody">
+                                    <!-- Quizzes will be dynamically loaded -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
                 </div>
             </section>
-
-            <!-- Main Grid -->
-            <div class="content-grid">
-                <!-- Students Table -->
-                <section class="data-section">
-                    <div class="section-header">
-                        <h2>👥 Students Overview</h2>
-                        <div class="header-actions">
-                            <input type="text" id="studentSearch" placeholder="Search students..." class="search-input">
-                            <button class="btn-icon" onclick="refreshStudents()">🔄</button>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Student Name</th>
-                                    <th>Email</th>
-                                    <th>Courses Enrolled</th>
-                                    <th>Quizzes Taken</th>
-                                    <th>Avg Score</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="studentsTableBody">
-                                <!-- Students will be dynamically loaded -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- Courses Table -->
-                <section class="data-section">
-                    <div class="section-header">
-                        <h2>📚 Courses Management</h2>
-                        <div class="header-actions">
-                            <input type="text" id="courseSearch" placeholder="Search courses..." class="search-input">
-                            <button class="btn-icon" onclick="refreshCourses()">🔄</button>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Course Name</th>
-                                    <th>Category</th>
-                                    <th>Students Enrolled</th>
-                                    <th>Duration</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="coursesTableBody">
-                                <!-- Courses will be dynamically loaded -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- Quizzes Table -->
-                <section class="data-section">
-                    <div class="section-header">
-                        <h2>🎯 Quizzes Management</h2>
-                        <div class="header-actions">
-                            <input type="text" id="quizSearch" placeholder="Search quizzes..." class="search-input">
-                            <button class="btn-icon" onclick="refreshQuizzes()">🔄</button>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Quiz Name</th>
-                                    <th>Course</th>
-                                    <th>Questions</th>
-                                    <th>Times Taken</th>
-                                    <th>Avg Score</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="quizzesTableBody">
-                                <!-- Quizzes will be dynamically loaded -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
         </main>
     </div>
 

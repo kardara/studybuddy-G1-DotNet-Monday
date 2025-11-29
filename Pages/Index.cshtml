@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="~/css/welcome.css" asp-append-version="true" />
 </head>
 <body class="welcome-body">
+    <!-- Header Buttons -->
+    <div class="header-buttons">
+        <button class="auth-btn login-btn" onclick="login()">Login</button>
+        <button class="auth-btn register-btn" onclick="register()">Register</button>
+    </div>
+
     <div class="welcome-container">
         <div class="welcome-card">
             <div class="logo">📚</div>
@@ -28,18 +34,21 @@
                         <div class="feature-desc">Test your knowledge with engaging quizzes</div>
                     </div>
                 </a>
-      
-                <div class="feature-card">
-                    <a href="/Student/studentDashboard" class="feature-card-link">
-                    <div class="feature-icon">📊</div>
-                    <div class="feature-title">Track Progress</div>
-                    <div class="feature-desc">Monitor your learning journey in real-time</div>
-                </div>
+
+                <a href="/Student/studentDashboard" class="feature-card-link">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Track Progress</div>
+                        <div class="feature-desc">Monitor your learning journey in real-time</div>
+                    </div>
+                </a>
+
                 <div class="feature-card">
                     <div class="feature-icon">🏆</div>
                     <div class="feature-title">Earn Rewards</div>
                     <div class="feature-desc">Unlock achievements as you learn</div>
                 </div>
+
                 <a href="/Student/Courses" class="feature-card-link">
                     <div class="feature-card">
                         <div class="feature-icon">👥</div>
