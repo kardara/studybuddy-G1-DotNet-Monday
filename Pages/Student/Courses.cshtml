@@ -1,0 +1,116 @@
+﻿@page
+@model STUDYBUDDY.Pages.Student.CoursesModel
+@{
+    ViewData["Title"] = "Courses";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - StudyBuddy</title>
+    <link rel="stylesheet" href="~/css/courses.css" asp-append-version="true" />
+</head>
+<body class="courses-body">
+    <div class="courses-container">
+        <!-- Header -->
+        <div class="courses-header">
+            <h1 class="courses-title">🎓 Our Courses</h1>
+            <p class="courses-subtitle">Expand your knowledge with our comprehensive course catalog</p>
+
+            <!-- Search and Filter -->
+            <div class="courses-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search courses..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filter-group">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="programming">Programming</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="business">Business</option>
+                        <option value="design">Design</option>
+                        <option value="language">Language</option>
+                    </select>
+                    <select id="levelFilter" class="filter-select">
+                        <option value="all">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="coursesGrid">
+            <!-- Courses will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">📚</div>
+            <h2>No Courses Found</h2>
+            <p>Try adjusting your search or filters</p>
+            <button class="btn btn-primary" onclick="resetFilters()">Reset Filters</button>
+        </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div class="modal" id="courseModal">
+        <div class="modal-content course-modal">
+            <div class="modal-header">
+                <h2 id="modalCourseTitle">Course Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="course-detail-header">
+                    <div class="course-detail-image" id="modalCourseImage"></div>
+                    <div class="course-detail-info">
+                        <div class="course-detail-meta">
+                            <span class="course-category" id="modalCourseCategory"></span>
+                            <span class="course-level" id="modalCourseLevel"></span>
+                            <span class="course-duration" id="modalCourseDuration"></span>
+                        </div>
+                        <div class="course-rating" id="modalCourseRating"></div>
+                    </div>
+                </div>
+                <div class="course-detail-content">
+                    <h3>About This Course</h3>
+                    <p id="modalCourseDescription"></p>
+
+                    <div class="course-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="modalCourseStudents"></span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="modalCourseLessons"></span>
+                            <span class="stat-label">Lessons</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="modalCourseQuizzes"></span>
+                            <span class="stat-label">Quizzes</span>
+                        </div>
+                    </div>
+
+                    <div class="course-features">
+                        <h4>What You'll Learn</h4>
+                        <ul id="modalCourseFeatures"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="enrollBtn">Enroll Now</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/courses.js"></script>
+</body>
+</html>
