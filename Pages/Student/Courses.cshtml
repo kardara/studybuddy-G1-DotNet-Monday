@@ -1,0 +1,280 @@
+﻿@page
+@model STUDYBUDDY.Pages.Student.CoursesModel
+@{
+    ViewData["Title"] = "Courses";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - StudyBuddy</title>
+    <link rel="stylesheet" href="~/css/courses.css" asp-append-version="true" />
+</head>
+<body class="courses-body">
+    <div class="courses-container">
+        <!-- Header -->
+        <div class="courses-header">
+            <h1 class="courses-title">🎓 Our Courses</h1>
+            <p class="courses-subtitle">Expand your knowledge with our comprehensive course catalog</p>
+
+            <!-- Search and Filter -->
+            <div class="courses-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search courses..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filter-group">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="programming">Programming</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="business">Business</option>
+                    </select>
+                    <select id="levelFilter" class="filter-select">
+                        <option value="all">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="coursesGrid">
+            <!-- Course 1 -->
+            <div class="course-card">
+                <div class="course-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    💻
+                </div>
+                <div class="course-content">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">JavaScript Mastery</h3>
+                        </div>
+                    </div>
+                    <p class="course-description">Master JavaScript from basics to advanced concepts including ES6+, async programming, and modern frameworks.</p>
+                    <div class="course-rating">
+                        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-value">4.8</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Students</span>
+                            <span class="meta-value">12,450</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">8 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Level</span>
+                            <span class="meta-value level-intermediate">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary">View Details</button>
+                        <button class="btn btn-secondary">Enroll</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card">
+                <div class="course-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    🎨
+                </div>
+                <div class="course-content">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-category">Design</span>
+                            <h3 class="course-title">UI/UX Design Fundamentals</h3>
+                        </div>
+                    </div>
+                    <p class="course-description">Learn the principles of user interface and user experience design to create stunning digital products.</p>
+                    <div class="course-rating">
+                        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-value">4.9</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Students</span>
+                            <span class="meta-value">8,920</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">6 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Level</span>
+                            <span class="meta-value level-beginner">Beginner</span>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary">View Details</button>
+                        <button class="btn btn-secondary">Enroll</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="course-card">
+                <div class="course-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    📊
+                </div>
+                <div class="course-content">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-category">Business</span>
+                            <h3 class="course-title">Data Analytics & Visualization</h3>
+                        </div>
+                    </div>
+                    <p class="course-description">Transform raw data into actionable insights using modern analytics tools and visualization techniques.</p>
+                    <div class="course-rating">
+                        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-value">4.7</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Students</span>
+                            <span class="meta-value">15,230</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">10 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Level</span>
+                            <span class="meta-value level-intermediate">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary">View Details</button>
+                        <button class="btn btn-secondary">Enroll</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card">
+                <div class="course-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    🤖
+                </div>
+                <div class="course-content">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">Machine Learning Basics</h3>
+                        </div>
+                    </div>
+                    <p class="course-description">Dive into machine learning algorithms, neural networks, and AI applications with hands-on projects.</p>
+                    <div class="course-rating">
+                        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-value">4.6</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Students</span>
+                            <span class="meta-value">9,340</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">12 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Level</span>
+                            <span class="meta-value level-advanced">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary">View Details</button>
+                        <button class="btn btn-secondary">Enroll</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="course-card">
+                <div class="course-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    📱
+                </div>
+                <div class="course-content">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">Mobile App Development</h3>
+                        </div>
+                    </div>
+                    <p class="course-description">Build cross-platform mobile applications using React Native and modern mobile development practices.</p>
+                    <div class="course-rating">
+                        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-value">4.8</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Students</span>
+                            <span class="meta-value">11,680</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">9 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Level</span>
+                            <span class="meta-value level-intermediate">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary">View Details</button>
+                        <button class="btn btn-secondary">Enroll</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 6 -->
+            <div class="course-card">
+                <div class="course-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    ✍️
+                </div>
+                <div class="course-content">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-category">Business</span>
+                            <h3 class="course-title">Digital Marketing Mastery</h3>
+                        </div>
+                    </div>
+                    <p class="course-description">Master SEO, social media marketing, content strategy, and analytics to grow your digital presence.</p>
+                    <div class="course-rating">
+                        <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-value">4.9</span>
+                    </div>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Students</span>
+                            <span class="meta-value">14,570</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">7 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Level</span>
+                            <span class="meta-value level-beginner">Beginner</span>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary">View Details</button>
+                        <button class="btn btn-secondary">Enroll</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/courses.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿@page
+@model STUDYBUDDY.Pages.Student.studentDashboardModel
+@{
+    ViewData["Title"] = "Student Dashboard";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - StudyBuddy</title>
+    <link rel="stylesheet" href="~/css/studentDashboard.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <h2>StudyBuddy</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/Student/adminDashboard" class="admin-btn">
+                    <span class="nav-icon">👨‍💼</span>
+                    <span>Admin</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="welcome-section">
+                    <h1>Welcome back, <span class="user-name">John</span>! 👋</h1>
+                    <p class="date-text">Ready to continue your learning journey?</p>
+                </div>
+                <div class="user-profile">
+                    <div class="notification-icon">
+                        <span>🔔</span>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="profile-avatar">JD</div>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        📚
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="totalCourses">8</h3>
+                        <p class="stat-label">Courses Enrolled</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        ✅
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="completedCourses">5</h3>
+                        <p class="stat-label">Courses Completed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        🎯
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="quizzesTaken">24</h3>
+                        <p class="stat-label">Quizzes Taken</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        ⭐
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="avgScore">85%</h3>
+                        <p class="stat-label">Average Score</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Grid -->
+            <div class="content-grid">
+                <!-- Courses in Progress -->
+                <section class="courses-section">
+                    <div class="section-header">
+                        <h2>📖 Courses in Progress</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="courses-list" id="coursesList">
+                        <!-- Courses will be dynamically loaded -->
+                    </div>
+                </section>
+
+                <!-- Recent Activity -->
+                <aside class="activity-section">
+                    <div class="section-header">
+                        <h2>🔥 Recent Activity</h2>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activity items will be dynamically loaded -->
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Quiz History -->
+            <section class="quiz-section">
+                <div class="section-header">
+                    <h2>🎯 Recent Quiz Results</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="quiz-table-container">
+                    <table class="quiz-table">
+                        <thead>
+                            <tr>
+                                <th>Quiz Name</th>
+                                <th>Course</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quizTableBody">
+                            <!-- Quiz results will be dynamically loaded -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="~/js/studentDashboard.js"></script>
+</body>
+</html>

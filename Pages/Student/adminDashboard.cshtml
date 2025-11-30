@@ -1,0 +1,329 @@
+﻿@page
+@model STUDYBUDDY.Pages.Student.adminDashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - StudyBuddy</title>
+    <link rel="stylesheet" href="~/css/adminDashboard.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">👨‍💼</span>
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('students')">
+                    <span class="nav-icon">👥</span>
+                    <span>Students</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('courses')">
+                    <span class="nav-icon">📚</span>
+                    <span>Courses</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('quizzes')">
+                    <span class="nav-icon">🎯</span>
+                    <span>Quizzes</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('reports')">
+                    <span class="nav-icon">📈</span>
+                    <span>Reports</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="welcome-section">
+                    <h1 id="sectionTitle">Admin Dashboard</h1>
+                    <p class="date-text" id="sectionDescription">Manage your StudyBuddy platform</p>
+                </div>
+                <div class="action-buttons" id="actionButtons">
+                    <button class="btn btn-primary" onclick="openAddCourseModal()">
+                        <span>➕</span> Add Course
+                    </button>
+                    <button class="btn btn-secondary" onclick="openAddQuizModal()">
+                        <span>➕</span> Add Quiz
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboardSection" class="content-section active">
+                <!-- Stats Cards -->
+                <section class="stats-section">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            👥
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="totalStudents">0</h3>
+                            <p class="stat-label">Total Students</p>
+                            <span class="stat-change positive">↑ 12% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            📚
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="totalCourses">0</h3>
+                            <p class="stat-label">Total Courses</p>
+                            <span class="stat-change positive">↑ 5% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            🎯
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="totalQuizzes">0</h3>
+                            <p class="stat-label">Total Quizzes</p>
+                            <span class="stat-change positive">↑ 8% this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            ✅
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" id="quizzesTaken">0</h3>
+                            <p class="stat-label">Quizzes Taken</p>
+                            <span class="stat-change positive">↑ 15% this month</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Main Grid -->
+                <div class="content-grid">
+                    <!-- Students Table -->
+                    <section class="data-section">
+                        <div class="section-header">
+                            <h2>👥 Students Overview</h2>
+                            <div class="header-actions">
+                                <input type="text" id="studentSearch" placeholder="Search students..." class="search-input">
+                                <button class="btn-icon" onclick="refreshStudents()">🔄</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student Name</th>
+                                        <th>Email</th>
+                                        <th>Courses Enrolled</th>
+                                        <th>Quizzes Taken</th>
+                                        <th>Avg Score</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentsTableBody">
+                                    <!-- Students will be dynamically loaded -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Courses Table -->
+                    <section class="data-section">
+                        <div class="section-header">
+                            <h2>📚 Courses Management</h2>
+                            <div class="header-actions">
+                                <input type="text" id="courseSearch" placeholder="Search courses..." class="search-input">
+                                <button class="btn-icon" onclick="refreshCourses()">🔄</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Course Name</th>
+                                        <th>Category</th>
+                                        <th>Students Enrolled</th>
+                                        <th>Duration</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="coursesTableBody">
+                                    <!-- Courses will be dynamically loaded -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Quizzes Table -->
+                    <section class="data-section">
+                        <div class="section-header">
+                            <h2>🎯 Quizzes Management</h2>
+                            <div class="header-actions">
+                                <input type="text" id="quizSearch" placeholder="Search quizzes..." class="search-input">
+                                <button class="btn-icon" onclick="refreshQuizzes()">🔄</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Quiz Name</th>
+                                        <th>Course</th>
+                                        <th>Questions</th>
+                                        <th>Times Taken</th>
+                                        <th>Avg Score</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="quizzesTableBody">
+                                    <!-- Quizzes will be dynamically loaded -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div class="modal" id="addCourseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Course</h2>
+                <button class="close-btn" onclick="closeAddCourseModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="addCourseForm">
+                <div class="form-group">
+                    <label>Course Name</label>
+                    <input type="text" name="courseName" placeholder="Enter course name" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" required>
+                        <option value="">Select category</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Science">Science</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Enter course description" rows="4" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Duration (weeks)</label>
+                        <input type="number" name="duration" placeholder="8" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Level</label>
+                        <select name="level" required>
+                            <option value="">Select level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="status" required>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Create Course</button>
+                    <button type="button" class="btn btn-cancel" onclick="closeAddCourseModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Quiz Modal -->
+    <div class="modal" id="addQuizModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Quiz</h2>
+                <button class="close-btn" onclick="closeAddQuizModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="addQuizForm">
+                <div class="form-group">
+                    <label>Quiz Name</label>
+                    <input type="text" name="quizName" placeholder="Enter quiz name" required>
+                </div>
+                <div class="form-group">
+                    <label>Associated Course</label>
+                    <select name="course" required>
+                        <option value="">Select course</option>
+                        <option value="JavaScript Mastery">JavaScript Mastery</option>
+                        <option value="UI/UX Design">UI/UX Design Fundamentals</option>
+                        <option value="Machine Learning">Machine Learning Basics</option>
+                        <option value="Mobile Development">Mobile App Development</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Enter quiz description" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Number of Questions</label>
+                        <input type="number" name="questions" placeholder="10" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Duration (minutes)</label>
+                        <input type="number" name="duration" placeholder="30" min="1" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Passing Score (%)</label>
+                        <input type="number" name="passingScore" placeholder="70" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="status" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Create Quiz</button>
+                    <button type="button" class="btn btn-cancel" onclick="closeAddQuizModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/js/adminDashboard.js"></script>
+</body>
+</html>
